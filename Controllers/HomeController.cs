@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using IS_Control.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IS_Control.Controllers
 {
@@ -18,11 +20,26 @@ namespace IS_Control.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
+            ViewData["UserName"]  = User.Identity.Name;
+            
+            ViewData["UserFullName"] = User.Claims.ToList().
+                                        FirstOrDefault(x => x.Type == "UserFullName").Value;
+            ViewData["KIDro"] = User.Claims.ToList().
+                                        FirstOrDefault(x => x.Type == "KIDro").Value;
+            ViewData["Role"] = User.Claims.ToList().
+                                        FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+            ViewData["reportDt"] =(new DateTime(Convert.ToInt32(User.Claims.ToList().
+                                        FirstOrDefault(x => x.Type == "reportDtYear").Value),
+                                   Convert.ToInt32(User.Claims.ToList().
+                                        FirstOrDefault(x => x.Type == "reportDtMonth").Value), 1)).ToString("MMMM yyyy") ;
+            ViewBag.Page = "Home";
             return View();
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

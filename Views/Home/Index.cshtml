@@ -2,3 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
+    <div class="text-center">
+        <h1 class="display-4">Пользователь : @ViewData["UserFullName"]</h1>
+        <div>Логин в системе : @ViewData["UserName"]</div>
+        <div>Код района : @ViewData["KIDro"]</div>
+        <div>Доступ : @ViewData["Role"]</div>
+        <div>Периуд отчета : @ViewData["reportDt"]</div>
+        <div>Lang : @ViewBag.CurrentL</div>
+        <div>LangUI : @ViewBag.CurrentUIL</div>
+        <p></p>
+        <p></p>
+        <form asp-action="Logout" asp-controller="Account">
+            <input type="submit" value="Выйти из системы">
+        </form>
+    </div>

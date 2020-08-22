@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using Dapper;
-using System.Data;
+using Dapper.Contrib;
 using IS_Control.Models;
 using System.Data.SqlClient;
 using IS_Control.Tools;
 using Microsoft.AspNetCore.Authentication;
 
-namespace AuthSample.Controllers
+namespace IS_Control.Controllers
 {
     public class AccountController : Controller
     {
@@ -107,7 +107,7 @@ namespace AuthSample.Controllers
             {
                 var usr = _conn.QueryFirst<User>("SELECT * FROM Users WHERE Id=@idd", new {idd = id});
                 if(usr == null) return NotFound();
-                ViewBag.KIDroList = spDAL.KIDroList();
+                //ViewBag.KIDroList = spDAL.KIDroList();
                 ViewBag.Page = "Home";
                 return View(usr);
             }
@@ -183,7 +183,7 @@ namespace AuthSample.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Register()
             {
-                ViewBag.KIDroList = spDAL.KIDroList();
+                //ViewBag.KIDroList = spDAL.KIDroList();
                 ViewBag.Page = "Home";
                 return View();
             }
@@ -248,7 +248,7 @@ namespace AuthSample.Controllers
                 string KIDro;
                 DateTime rDt; 
 
-                if(usr.Role!=null) roleP = usr.Role; else roleP ="";
+                if(usr.Role!=null) roleP = usr.Role; else roleP ="Client";
                 if(usr.KIDro!=null) KIDro =usr.KIDro; else KIDro = "";
                 if(usr.reportDt!=null) rDt = usr.reportDt; 
                     else rDt = new DateTime(DateTime.Today.Year,DateTime.Today.Month-1,1);
@@ -277,8 +277,8 @@ namespace AuthSample.Controllers
 
 
                 var id = new ClaimsIdentity(claims, "ApplicationCookie",
-                    ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-
+                    ClaimsIdentity.DefaultNameClaimType, 
+                    ClaimsIdentity.DefaultRoleClaimType);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                                                 new ClaimsPrincipal(id)).ConfigureAwait(false);
                 }
