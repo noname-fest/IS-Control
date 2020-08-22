@@ -1,0 +1,55 @@
+@model nadis.Models.User
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h3>Редактирование Пользователя</h3>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="UserFullname" class="control-label"></label>
+                <input asp-for="UserFullname" class="form-control" type="text" />
+                <span asp-validation-for="UserFullname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KIDro" class="control-label"></label>
+                <!--<input asp-for="KIDRo" class="form-control" type="text" /> -->
+                @Html.DropDownList("KIDro", ViewBag.KIDroList as SelectList, new { @class = "form-control" })
+                <span asp-validation-for="KIDro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reportDt" class="control-label"></label>
+                <input asp-for="reportDt" class="form-control" type="date" />
+                <span asp-validation-for="reportDt" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" type="text"/>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="username" class="control-label"></label>
+                <input asp-for="username" class="form-control" type="text"/>
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="userpassword" class="control-label"></label>
+                <input asp-for="userpassword" class="form-control" type="text"/>
+                <span asp-validation-for="userpassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Сохранить" asp-route-id="@Model.Id" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="UsersEdit">Назад к списку</a>
+</div>
+

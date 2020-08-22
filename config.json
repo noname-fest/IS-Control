@@ -1,0 +1,3 @@
+{
+  "DefaultConnection": "Data Source=.\\SQLEXPRESS;Initial Catalog=tmp;Integrated Security=True;"
+}

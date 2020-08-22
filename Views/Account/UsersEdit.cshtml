@@ -1,0 +1,75 @@
+@model IEnumerable<nadis.Models.User>
+@{
+    ViewData["Title"] = "UsersEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<font color="red" size=18>@TempData["EM"]</font>
+<p>
+    <a asp-action="Register" asp-controller="Account">Регистрация нового пользователя</a>
+</p>
+<p>
+        <form>
+                @Html.DropDownList("dt",ViewBag.DtList as SelectList)
+                <input type="submit" value="Установить для всех пользователей"
+                                    asp-controller="Account"
+                    asp-action="ReportDtToAllUsers" method="GET"
+                    asp-route-dt="dt" 
+                    class="btn btn-success"/>
+       </form>
+</p>
+
+<table class="table table-striped table-responsive-sm">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserFullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KIDro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reportDt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userpassword)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tmp in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => tmp.UserFullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => tmp.KIDro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => tmp.reportDt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => tmp.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => tmp.username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => tmp.userpassword)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@tmp.Id">Редак.</a>&nbsp;&nbsp;
+                    <a asp-action="Delete" asp-route-id="@tmp.Id">Удал.</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">На главную</a>
