@@ -11,6 +11,7 @@ using IS_Control.Models;
 using System.Data.SqlClient;
 using IS_Control.Tools;
 using Microsoft.AspNetCore.Authentication;
+using IS_Control.DAL;
 
 namespace IS_Control.Controllers
 {
@@ -107,7 +108,7 @@ namespace IS_Control.Controllers
             {
                 var usr = _conn.QueryFirst<User>("SELECT * FROM Users WHERE Id=@idd", new {idd = id});
                 if(usr == null) return NotFound();
-                //ViewBag.KIDroList = spDAL.KIDroList();
+                ViewBag.UnitsList = spDAL.UnitsList();
                 ViewBag.Page = "Home";
                 return View(usr);
             }
@@ -128,18 +129,17 @@ namespace IS_Control.Controllers
 
                 using(var _conn = new SqlConnection(connectionString))
                     {
-                        _conn.Execute("UPDATE Users SET KIDro=@_kidro,"+
+                        _conn.Execute("UPDATE Users SET UnitsId=@_UnitsId,"+
                         "username=@_username, UserFullname=@_UserFullname,"+
-                        "userpassword=@_userpassword, Role=@_Role, reportDt=@_reportDt "+
+                        "userpassword=@_userpassword, Role=@_Role "+
                         "WHERE Id=@_Id",
                         new {
                             _Id = objUsr.Id,
-                            _kidro = objUsr.KIDro,
+                            _UnitsId = objUsr.UnitsId,
                             _username = objUsr.username,
                             _UserFullname = objUsr.UserFullname,
                             _userpassword = objUsr.userpassword,
-                            _Role = objUsr.Role,
-                            _reportDt = objUsr.reportDt
+                            _Role = objUsr.Role
                         } );   
                         return RedirectToAction("UsersEdit");
                     }
@@ -183,7 +183,7 @@ namespace IS_Control.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Register()
             {
-                //ViewBag.KIDroList = spDAL.KIDroList();
+                ViewBag.UnitsList = spDAL.UnitsList();
                 ViewBag.Page = "Home";
                 return View();
             }
@@ -209,12 +209,12 @@ namespace IS_Control.Controllers
                             UsrFN = registerModel.UserFullname,
                             usrname = registerModel.username,
                             usrpwd = registerModel.userpassword,
-                            @idro = registerModel.KIDro,
-                            @rr = registerModel.Role,
-                            @rDt = registerModel.reportDt
+                            UnitsId = registerModel.UnitsId,
+                            rr = registerModel.Role
+                            //@rDt = registerModel.reportDt
                         };
-                        _conn.Execute("INSERT INTO Users (UserFullname,username,userpassword,KIDro,Role,reportDt) "+
-                            "VALUES (@UsrFN,@usrname,@usrpwd,@idro,@rr,@rDt)" ,
+                        _conn.Execute("INSERT INTO Users (UserFullname,username,userpassword,UnitsId,Role) "+
+                            "VALUES (@UsrFN,@usrname,@usrpwd,@UnitsId,@rr)" ,
                             param);
                     _conn.Close();
                     return RedirectToAction("Index", "Home");
@@ -245,25 +245,25 @@ namespace IS_Control.Controllers
                                                             new{usr_name = username});
                 string usrFullName;
                 string roleP;
-                string KIDro;
-                DateTime rDt; 
+                string UnitsId;
+                //DateTime rDt; 
 
                 if(usr.Role!=null) roleP = usr.Role; else roleP ="Client";
-                if(usr.KIDro!=null) KIDro =usr.KIDro; else KIDro = "";
-                if(usr.reportDt!=null) rDt = usr.reportDt; 
-                    else rDt = new DateTime(DateTime.Today.Year,DateTime.Today.Month-1,1);
+                if(usr.UnitsId!=null) UnitsId =usr.UnitsId; else UnitsId = "";
+                //if(usr.reportDt!=null) rDt = usr.reportDt; 
+                    //else rDt = new DateTime(DateTime.Today.Year,DateTime.Today.Month-1,1);
                 if(usr.UserFullname!=null) usrFullName = usr.UserFullname; else usrFullName = "";
 
-                int Y = rDt.Year;
-                int M = rDt.Month;
+                //int Y = rDt.Year;
+                //int M = rDt.Month;
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, username),
                     new Claim(ClaimsIdentity.DefaultRoleClaimType, roleP),
-                    new Claim("KIDro", KIDro),
+                    new Claim("KIDro", UnitsId),
                     new Claim("Role", roleP),
-                    new Claim("reportDtYear", Y.ToString()),
-                    new Claim("reportDtMonth", M.ToString()),
+                    //new Claim("reportDtYear", Y.ToString()),
+                    //new Claim("reportDtMonth", M.ToString()),
                     new Claim("UserFullName", usrFullName)
                 };
                 //CultureInfo.CurrentCulture = new CultureInfo("ky-KG");

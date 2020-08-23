@@ -1,14 +1,19 @@
-using System;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using IS_Control.Tools;
-
+using IS_Control.Models;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IS_Control.Controllers
 {
     public class VSDController : Controller
         {
-            //public static string connStr {get;}
+            [Authorize]
+            public IActionResult Index()
+            {
+                List<VSD> list = new List<VSD>();
+                return View(list);
+            } 
+           //public static string connStr {get;}
             //var appSettingsJson = AppSettingJSON.GetAppSettings();
             //connStr = appSettingsJson["DefaultConnection"];
         }

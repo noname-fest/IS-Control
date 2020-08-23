@@ -17,15 +17,15 @@ namespace IS_Control.Models
         [Display(Name = "Пароль")]
         public string userpassword { get; set; }
 
-        [Display(Name = "Код района")]
-        public string KIDro { get; set; }
+        [Display(Name = "Код ПП")]
+        public string UnitsId { get; set; }
 
         [Display(Name = "Роль")]
         public string Role { get; set; }
 
-        [Display(Name = "Отч. периуд")]
-        [Column(TypeName = "date")]
-        [DisplayFormat(DataFormatString = "{0:MMM yyyy}")]
-        public DateTime reportDt {get; set;}
+        //[Display(Name = "Отч. периуд")]
+        //[Column(TypeName = "date")]
+        //[DisplayFormat(DataFormatString = "{0:MMM yyyy}")]
+        //public DateTime reportDt {get; set;}
     }
 }

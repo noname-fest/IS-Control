@@ -26,10 +26,10 @@
             <span asp-validation-for="ConfirmPassword"></span>
         </div>
         <div>
-            <label asp-for="KIDro">Код района</label><br />
+            <label asp-for="UnitsId">Код ПП</label><br />
             <!--<input asp-for="KIDro" />-->
-            @Html.DropDownList("KIDro", ViewBag.KIDroList as SelectList, new { @class = "form-control" })
-            <span asp-validation-for="KIDro"></span>
+            @Html.DropDownList("UnitsId", ViewBag.UnitsList as SelectList, new { @class = "form-control" })
+            <span asp-validation-for="UnitsId"></span>
         </div>
         <div>
             <label asp-for="Role">Роль пользователя</label><br />

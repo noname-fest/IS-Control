@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace IS_Control.Models
@@ -67,5 +68,10 @@ namespace IS_Control.Models
        
         [Display(Name = "Дополнительная информация")]
         public string Additional {get;set;}
+
+        public static implicit operator VSD(List<VSD> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

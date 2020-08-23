@@ -8,16 +8,6 @@
 <p>
     <a asp-action="Register" asp-controller="Account">Регистрация нового пользователя</a>
 </p>
-<p>
-        <form>
-                @Html.DropDownList("dt",ViewBag.DtList as SelectList)
-                <input type="submit" value="Установить для всех пользователей"
-                                    asp-controller="Account"
-                    asp-action="ReportDtToAllUsers" method="GET"
-                    asp-route-dt="dt" 
-                    class="btn btn-success"/>
-       </form>
-</p>
 
 <table class="table table-striped table-responsive-sm">
     <thead>
@@ -26,10 +16,7 @@
                 @Html.DisplayNameFor(model => model.UserFullname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.KIDro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.reportDt)
+                @Html.DisplayNameFor(model => model.UnitsId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Role)
@@ -50,10 +37,7 @@
                     @Html.DisplayFor(modelItem => tmp.UserFullname)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => tmp.KIDro)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => tmp.reportDt)
+                    @Html.DisplayFor(modelItem => tmp.UnitsId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => tmp.Role)

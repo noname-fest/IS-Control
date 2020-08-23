@@ -16,15 +16,10 @@
                 <span asp-validation-for="UserFullname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="KIDro" class="control-label"></label>
+                <label asp-for="UnitsId" class="control-label"></label>
                 <!--<input asp-for="KIDRo" class="form-control" type="text" /> -->
-                @Html.DropDownList("KIDro", ViewBag.KIDroList as SelectList, new { @class = "form-control" })
-                <span asp-validation-for="KIDro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="reportDt" class="control-label"></label>
-                <input asp-for="reportDt" class="form-control" type="date" />
-                <span asp-validation-for="reportDt" class="text-danger"></span>
+                @Html.DropDownList("UnitsId", ViewBag.UnitsList as SelectList, new { @class = "form-control" })
+                <span asp-validation-for="UnitsId" class="text-danger"></span>
             </div>
             
             <div class="form-group">
