@@ -8,7 +8,7 @@ namespace IS_Control.Models
     [Table ("VSD")]
     public class VSD
     {
-        [Key]
+        [Dapper.Contrib.Extensions.Key]
         public Guid id {get;set;}
         //принадлежность записи
         public string userId {get;set;}

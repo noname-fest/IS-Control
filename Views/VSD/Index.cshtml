@@ -1,5 +1,7 @@
 @model IEnumerable<IS_Control.Models.VSD>
+@using IS_Control.DAL
 @{
+    
     ViewData["Title"] = "Index VSD";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -104,7 +106,7 @@
                 @Html.DisplayFor(modelItem => tmp.Consignee)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => tmp.TransportID)
+                @spDAL.TransportName(tmp.TransportID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => tmp.TransportNumber)
@@ -128,23 +130,26 @@
                 @Html.DisplayFor(modelItem => tmp.AmountOfProduct)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => tmp.EdizmOfProduct)
+                @spDAL.EdizmName(tmp.EdizmOfProduct)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => tmp.AmountOfPackages)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => tmp.EdizmOfPackages)
+                @spDAL.EdizmName(tmp.EdizmOfPackages)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => tmp.Marking)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => tmp.Conclusion)
+                @spDAL.ConclusionName(tmp.Conclusion)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => tmp.Additional)
             </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@tmp.id">Редак.</a><a asp-action="Delete" asp-route-id="@tmp.id">Удал.</a>
+                </td>
             </tr>
         }
     </tbody>

@@ -83,6 +83,44 @@ namespace IS_Control.DAL
             foreach (var tt in tmp) tL.Add(tt);
             return new SelectList(tL, "ID", "Text");
         }
+        public static SelectList ConclusionList()
+        {
+            using SqlConnection _conn = new SqlConnection(connStr);
+            var tmp = _conn.Query<sp_values>("SELECT id , [Conclusion] as Text FROM [dbo].[spConclusion]");
+            List<sp_values> tL = new List<sp_values>();
+            foreach (var tt in tmp) tL.Add(tt);
+            return new SelectList(tL, "ID", "Text");
+        }
+        public static string TransportName(string id)
+        {
+            using (SqlConnection _conn = new SqlConnection(connStr))
+            {
+                string rez = _conn.QueryFirst<string>(
+                    "SELECT TOP 1 [Transport] FROM [spTransport] WHERE [id]=@val", 
+                    new { val = id});
+                if(rez==null) return ""; else return rez.Trim();
+            }
+        }
+        public static string EdizmName(string id)
+        {
+            using (SqlConnection _conn = new SqlConnection(connStr))
+            {
+                string rez = _conn.QueryFirst<string>(
+                    "SELECT TOP 1 [Edizm] FROM [spEdizm] WHERE [id]=@val", 
+                    new { val = id});
+                if(rez==null) return ""; else return rez.Trim();
+            }
+        }
+        public static string ConclusionName(string id)
+        {
+            using (SqlConnection _conn = new SqlConnection(connStr))
+            {
+                string rez = _conn.QueryFirst<string>(
+                    "SELECT TOP 1 [Conclusion] FROM [spConclusion] WHERE [id]=@val", 
+                    new { val = id});
+                if(rez==null) return ""; else return rez.Trim();
+            }
+        }
     }
 }
 

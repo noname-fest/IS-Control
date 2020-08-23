@@ -7,8 +7,9 @@ namespace IS_Control.Models
     [Table ("Users")]
     public class User
     {
-        [Key]
+        [Dapper.Contrib.Extensions.Key]
         public int Id { get; set; }
+        
         public int Iduser { get; set; }
 
         [Display(Name = "Пользователь")]
