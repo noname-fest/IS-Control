@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using IS_Control.DAL;
 using System.Linq;
+using System;
 
 namespace IS_Control.Controllers
 {
@@ -37,6 +38,7 @@ namespace IS_Control.Controllers
                 ViewBag.Page = "VSD";
                 return View(tmp);
             }
+            
             [Authorize]
             [HttpPost]
             [ValidateAntiForgeryToken]
@@ -59,6 +61,60 @@ namespace IS_Control.Controllers
                 ViewBag.Page = "VSD";
                 return View(tmp);
             }
+
+            [Authorize]
+            [HttpGet]
+            public IActionResult Edit(Guid id)
+            {
+                if (id == null) return NotFound();
+                VSD tmp = spDAL.GetById_VSD(id);
+                if (tmp == null) return NotFound();
+                //ViewBag.UnitsList = spDAL.UnitsList();
+                ViewBag.EdizmList = spDAL.EdizmList();
+                ViewBag.TransportList = spDAL.TransportList();
+                ViewBag.ConclusionList = spDAL.ConclusionList();
+
+                ViewBag.Page = "VSD";
+                return View(tmp);
+            }
+
+            [Authorize]
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public IActionResult Edit(Guid id, [Bind] VSD objVSD)
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                if (ModelState.IsValid)
+                {
+                    spDAL.Update_VSD(objVSD);
+                    return RedirectToAction("Index");
+                }
+                ViewBag.Page = "BioPrep";
+                return View(objVSD);
+            }
+
+            [Authorize]
+            public IActionResult Delete(Guid id)
+            {
+                if(id==null) return NotFound();
+                VSD tmp = spDAL.GetById_VSD(id);
+                if(tmp==null) return NotFound();
+                ViewBag.Page = "VSD";
+                return View(tmp);
+            }
+            [Authorize]
+            [HttpPost, ActionName("Delete")]
+            [ValidateAntiForgeryToken]
+            public IActionResult Delete_VSD(Guid id)
+            {
+                spDAL.Delete_VSD(id);
+                ViewBag.Page = "VSD";
+                return RedirectToAction("Index");
+            }
+
 
 
         }

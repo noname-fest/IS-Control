@@ -26,6 +26,13 @@ namespace IS_Control.DAL
             connStr = appSettingsJson["DefaultConnection"];
         }
 
+        public static void Update_VSD(VSD tmp)
+        {
+            using(SqlConnection _conn = new SqlConnection(spDAL.connStr))
+            {
+                _conn.Update(tmp);
+            }
+        }
         public static IEnumerable<VSD> GetAll_VSD(string UserID)
         {
             using(SqlConnection _conn = new SqlConnection(spDAL.connStr))
@@ -54,10 +61,16 @@ namespace IS_Control.DAL
             {
                 _conn.Insert(newVSD);
             }
+        }
+        public static void Delete_VSD(Guid Rid)
+        {
+            if (Rid == null) return;
+            using (SqlConnection _conn = new SqlConnection(spDAL.connStr))
+            {
+                _conn.Delete(new VSD {id = Rid});
+            }
+        }
 
-
-
-        }        
         public static SelectList UnitsList()
         {
             using SqlConnection _conn = new SqlConnection(connStr);

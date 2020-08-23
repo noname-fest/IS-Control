@@ -1,0 +1,40 @@
+﻿@model IS_Control.Models.VSD
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Удаление записи</h1>
+<div>
+    <h4>Information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VSDFrom)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.DocNumber)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.dtIssue)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Representative)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Shipper)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Consignee)
+        </dt>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">К списку</a>
+    </form>
+
+
