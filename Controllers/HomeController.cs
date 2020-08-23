@@ -27,8 +27,11 @@ namespace IS_Control.Controllers
             
             ViewData["UserFullName"] = User.Claims.ToList().
                                         FirstOrDefault(x => x.Type == "UserFullName").Value;
-            ViewData["KIDro"] = User.Claims.ToList().
-                                        FirstOrDefault(x => x.Type == "KIDro").Value;
+            ViewData["UnitsId"] = User.Claims.ToList().
+                                        FirstOrDefault(x => x.Type == "UnitsId").Value;
+
+            ViewData["UserId"] = User.Claims.ToList().
+                                        FirstOrDefault(x => x.Type == "UserId").Value;
             ViewData["Role"] = User.Claims.ToList().
                                         FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             /*

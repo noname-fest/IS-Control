@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IS_Control.Models
 {
+    [Table ("Users")]
     public class User
     {
+        [Key]
         public int Id { get; set; }
         public int Iduser { get; set; }
 

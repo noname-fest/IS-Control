@@ -5,7 +5,7 @@
     <div class="text-center">
         <h1 class="display-4">Пользователь : @ViewData["UserFullName"]</h1>
         <div>Логин в системе : @ViewData["UserName"]</div>
-        <div>Код ПП : @ViewData["KIDro"]</div>
+        <div>Код ПП : @ViewData["UnitsId"]</div>
         <div>Доступ : @ViewData["Role"]</div>
         <p></p>
             @if (@ViewData["Role"].ToString().Trim() == "Admin")

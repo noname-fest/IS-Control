@@ -1,11 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Dapper.Contrib.Extensions;
 
 namespace IS_Control.Models
 {
+    [Table ("VSD")]
     public class VSD
     {
+        [Key]
+        public Guid id {get;set;}
+        //принадлежность записи
+        public string userId {get;set;}
+
         [Display(Name = "Форма ВСД")]
         public string VSDFrom   {get;set;}
 

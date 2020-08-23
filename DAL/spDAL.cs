@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Dapper;
+using Dapper.Contrib;
+using Dapper.Contrib.Extensions;
 using IS_Control.Models;
 using IS_Control.Tools;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,10 +26,59 @@ namespace IS_Control.DAL
             connStr = appSettingsJson["DefaultConnection"];
         }
 
+        public static IEnumerable<VSD> GetAll_VSD(string UserID)
+        {
+            using(SqlConnection _conn = new SqlConnection(spDAL.connStr))
+            {
+                IEnumerable<VSD> tmpList =
+                    _conn.Query<VSD>("SELECT * FROM VSD WHERE userId=@UserIdP", 
+                                                new { 
+                                                        UserIdP = UserID
+                                                    });
+                _conn.Close();
+                //foreach (var tmp in tmpList){};
+                return tmpList;
+            }            
+        }
+        public static VSD GetById_VSD(Guid id)
+        {
+            using(SqlConnection _conn = new SqlConnection(spDAL.connStr))
+            {
+                //VSD tmp = _conn.Get<VSD>(id);
+                return _conn.Get<VSD>(id);
+            }
+        }
+        public static void Add(VSD newVSD)
+        {
+            using(SqlConnection _conn = new SqlConnection(spDAL.connStr))
+            {
+                _conn.Insert(newVSD);
+            }
+
+
+
+        }        
         public static SelectList UnitsList()
         {
             using SqlConnection _conn = new SqlConnection(connStr);
             var tmp = _conn.Query<sp_values>("SELECT ID , [VetUnit] as Text FROM [dbo].[Units]");
+            List<sp_values> tL = new List<sp_values>();
+            foreach (var tt in tmp) tL.Add(tt);
+            return new SelectList(tL, "ID", "Text");
+        }
+
+        public static SelectList EdizmList()
+        {
+            using SqlConnection _conn = new SqlConnection(connStr);
+            var tmp = _conn.Query<sp_values>("SELECT id , [Edizm] as Text FROM [dbo].[spEdizm]");
+            List<sp_values> tL = new List<sp_values>();
+            foreach (var tt in tmp) tL.Add(tt);
+            return new SelectList(tL, "ID", "Text");
+        }
+        public static SelectList TransportList()
+        {
+            using SqlConnection _conn = new SqlConnection(connStr);
+            var tmp = _conn.Query<sp_values>("SELECT id , [Transport] as Text FROM [dbo].[spTransport]");
             List<sp_values> tL = new List<sp_values>();
             foreach (var tt in tmp) tL.Add(tt);
             return new SelectList(tL, "ID", "Text");

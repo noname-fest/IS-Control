@@ -246,21 +246,24 @@ namespace IS_Control.Controllers
                 string usrFullName;
                 string roleP;
                 string UnitsId;
+                int UserId;
                 //DateTime rDt; 
 
                 if(usr.Role!=null) roleP = usr.Role; else roleP ="Client";
                 if(usr.UnitsId!=null) UnitsId =usr.UnitsId; else UnitsId = "";
+                //usr.UserId
                 //if(usr.reportDt!=null) rDt = usr.reportDt; 
                     //else rDt = new DateTime(DateTime.Today.Year,DateTime.Today.Month-1,1);
                 if(usr.UserFullname!=null) usrFullName = usr.UserFullname; else usrFullName = "";
-
+                UserId = usr.Id;
                 //int Y = rDt.Year;
                 //int M = rDt.Month;
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, username),
                     new Claim(ClaimsIdentity.DefaultRoleClaimType, roleP),
-                    new Claim("KIDro", UnitsId),
+                    new Claim("UnitsId", UnitsId),
+                    new Claim("UserId", UserId.ToString()),
                     new Claim("Role", roleP),
                     //new Claim("reportDtYear", Y.ToString()),
                     //new Claim("reportDtMonth", M.ToString()),

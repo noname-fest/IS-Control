@@ -1,0 +1,152 @@
+@model IEnumerable<IS_Control.Models.VSD>
+@{
+    ViewData["Title"] = "Index VSD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<font color="red" size=18>@TempData["EM"]</font>
+<p>
+    <a asp-action="Create" asp-controller="VSD">Регистрация нового ВСД</a>
+</p>
+
+<table class="table table-striped table-responsive-sm">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VSDFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dtIssue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Representative)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shipper)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consignee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransportID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransportNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingDoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Representative)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TnVED)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameForPrint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountOfProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdizmOfProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountOfPackages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdizmOfPackages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Conclusion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Additional)
+            </th>
+ 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tmp in Model)
+        {
+            <tr>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.VSDFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.DocNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.dtIssue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.Representative)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.Shipper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.Consignee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.TransportID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.TransportNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.ShippingDoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.Representative)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.TnVED)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.NameForPrint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.AmountOfProduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.EdizmOfProduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.AmountOfPackages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.EdizmOfPackages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.Marking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.Conclusion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => tmp.Additional)
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">На главную</a>
