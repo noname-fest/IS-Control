@@ -26,6 +26,24 @@ namespace IS_Control.DAL
             connStr = appSettingsJson["DefaultConnection"];
         }
 
+        public static List<string> AutoCompleteList(string prefix)
+        {
+            using(SqlConnection _conn = new SqlConnection(spDAL.connStr))
+            {
+                var r = new List<string>();
+                SqlCommand cmd = new SqlCommand("SELECT ProductName as 'label', ProductName as 'val'"+
+                                              "FROM VSD "+
+                                              "WHERE ProductName like '%"+prefix.Trim()+"%'" +
+                                              "GROUP BY ProductName",
+                                              _conn);
+                _conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                    r.Add(dr[0].ToString().Trim());
+                _conn.Close();
+                return r;
+            }
+        }
         public static void Update_VSD(VSD tmp)
         {
             using(SqlConnection _conn = new SqlConnection(spDAL.connStr))

@@ -14,14 +14,16 @@ namespace IS_Control.Models
         public string userId {get;set;}
 
         [Display(Name = "Форма ВСД")]
+        [Required(ErrorMessage = "Укажите Форму ВСД (не может быть пустым)")]
         public string VSDFrom   {get;set;}
 
         [Display(Name = "№ документа")]        
+        [Required(ErrorMessage = "Укажите № документа (не может быть пустым)")]
         public string DocNumber    {get;set;}
 
         [Display(Name = "Дата выдачи")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime dtIssue {get;set;}
+        public DateTime dtIssue {get;set;} = DateTime.Today;
         
         [Display(Name = "Организация/Субъект")]
         public string Subject   {get;set;}
@@ -42,6 +44,7 @@ namespace IS_Control.Models
         public string TransportNumber {get;set;}
 
         [Display(Name = "Товаротранспортные документы")]
+        [Required(ErrorMessage = "Укажите (не может быть пустым)")]
         public string ShippingDoc     {get;set;}
 
         [Display(Name = "Наименование продукции")]

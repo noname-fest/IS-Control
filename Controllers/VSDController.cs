@@ -115,6 +115,14 @@ namespace IS_Control.Controllers
                 return RedirectToAction("Index");
             }
 
+            [Authorize]
+            [HttpPost]
+            public JsonResult AutoCompleteProducName(string prefix)
+                {
+                    var t = spDAL.AutoCompleteList(prefix).ToList();
+                    return Json(t);
+                }
+
 
 
         }

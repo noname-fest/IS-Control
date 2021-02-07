@@ -6,12 +6,12 @@
 
 <font color="red" size=18>@TempData["EM"]</font>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Edit" asp-controller="VSD">
+    <!-- <div class="validation" asp-validation-summary="ModelOnly"></div> -->
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
             <input type="hidden" asp-for="userId"  id="_userId"/>
-
             <div class="form-group">
                 <label asp-for="VSDFrom" class="control-label"></label>
                 <input asp-for="VSDFrom" class="form-control" type="text"/>
@@ -66,7 +66,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" type="text"/>
+                <input asp-for="ProductName" class="form-control" type="text" id="pn"/>
                 <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -120,9 +120,42 @@
             <div class="form-group">
                 <input type="submit" value="Сохранить" asp-route-id="@Model.id" class="btn btn-success" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 <div>
     <a asp-action="Index">Назад к списку</a>
 </div>
+@section scripts
+{
+<script type="text/javascript">
+    $(function () {
+        $('#pn').autocomplete(
+            {
+                source: function (request, response) {
+                    var prefix  = $("#pn").val();
+                    $.ajax({
+                        url: "@Url.Action("AutoCompleteProducName")",
+                        data: { "prefix": prefix },
+                        type: "POST",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        },
+                        error: function (response) {
+                            alert("нету связи");
+                        },
+                        failure: function (response) {
+                            alert("ошибка");
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#pn").val(i.item.val);
+                },
+                minLength: 3
+            });
+    });
+</script>
+}
