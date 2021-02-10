@@ -38,6 +38,7 @@ namespace IS_Control.Models
         public string Consignee {get;set;}
 
         [Display(Name = "Вид транспорта")]
+        [Required(ErrorMessage = "Укажите вид транспорта (не может быть пустым)")]
         public string TransportID {get;set;} //link
 
         [Display(Name = "№ транспорта")]

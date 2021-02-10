@@ -9,118 +9,175 @@
 <form asp-action="Edit" asp-controller="VSD">
     <!-- <div class="validation" asp-validation-summary="ModelOnly"></div> -->
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row">
-        <div class="col-md-4">
-            <input type="hidden" asp-for="userId"  id="_userId"/>
-            <div class="form-group">
-                <label asp-for="VSDFrom" class="control-label"></label>
-                <input asp-for="VSDFrom" class="form-control" type="text"/>
-                <span asp-validation-for="VSDFrom" class="text-danger"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <input type="hidden" asp-for="userId"  id="_userId"/>
+                <div class="form-group">
+                    <label asp-for="VSDFrom" class="control-label"></label>
+                    <input asp-for="VSDFrom" class="form-control" type="text"/>
+                    <span asp-validation-for="VSDFrom" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="DocNumber" class="control-label"></label>
-                <input asp-for="DocNumber" class="form-control" type="text"/>
-                <span asp-validation-for="DocNumber" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="DocNumber" class="control-label"></label>
+                    <input asp-for="DocNumber" class="form-control" type="text"/>
+                    <span asp-validation-for="DocNumber" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="dtIssue" class="control-label"></label>
-                <input asp-for="dtIssue" class="form-control" type="date"/>
-                <span asp-validation-for="dtIssue" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="dtIssue" class="control-label"></label>
+                    <input asp-for="dtIssue" class="form-control" type="date"/>
+                    <span asp-validation-for="dtIssue" class="text-danger"></span>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Subject" class="control-label"></label>
-                <input asp-for="Subject" class="form-control" type="text"/>
-                <span asp-validation-for="Subject" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Subject" class="control-label"></label>
+                    <input asp-for="Subject" class="form-control" type="text"/>
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Representative" class="control-label"></label>
-                <input asp-for="Representative" class="form-control" type="text"/>
-                <span asp-validation-for="Representative" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Representative" class="control-label"></label>
+                    <input asp-for="Representative" class="form-control" type="text"/>
+                    <span asp-validation-for="Representative" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Shipper" class="control-label"></label>
-                <input asp-for="Shipper" class="form-control" type="text"/>
-                <span asp-validation-for="Shipper" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Shipper" class="control-label"></label>
+                    <input asp-for="Shipper" class="form-control" type="text"/>
+                    <span asp-validation-for="Shipper" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Consignee" class="control-label"></label>
-                <input asp-for="Consignee" class="form-control" type="text"/>
-                <span asp-validation-for="Consignee" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">    
+                <div class="form-group">
+                    <label asp-for="Consignee" class="control-label"></label>
+                    <input asp-for="Consignee" class="form-control" type="text"/>
+                    <span asp-validation-for="Consignee" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="TransportID" class="control-label"></label>
-                @Html.DropDownList("TransportID", ViewBag.TransportList as SelectList, 
-                                                    new { @class = "form-control" })
-                <span asp-validation-for="TransportID" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="TransportID" class="control-label"></label>
+                    @Html.DropDownList("TransportID", ViewBag.TransportList as SelectList, 
+                                                        new { @class = "form-control" })
+                    <span asp-validation-for="TransportID" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="TransportNumber" class="control-label"></label>
-                <input asp-for="TransportNumber" class="form-control" type="text"/>
-                <span asp-validation-for="TransportNumber" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="TransportNumber" class="control-label"></label>
+                    <input asp-for="TransportNumber" class="form-control" type="text"/>
+                    <span asp-validation-for="TransportNumber" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ShippingDoc" class="control-label"></label>
-                <input asp-for="ShippingDoc" class="form-control" type="text"/>
-                <span asp-validation-for="ShippingDoc" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="ShippingDoc" class="control-label"></label>
+                    <input asp-for="ShippingDoc" class="form-control" type="text"/>
+                    <span asp-validation-for="ShippingDoc" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" type="text" id="pn"/>
-                <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="ProductName" class="control-label"></label>
+                    <input asp-for="ProductName" class="form-control" type="text" id="pn"/>
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="TnVED" class="control-label"></label>
-                <input asp-for="TnVED" class="form-control" type="number"/>
-                <span asp-validation-for="TnVED" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="TnVED" class="control-label"></label>
+                    <input asp-for="TnVED" class="form-control" type="number"/>
+                    <span asp-validation-for="TnVED" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NameForPrint" class="control-label"></label>
-                <input asp-for="NameForPrint" class="form-control" type="text"/>
-                <span asp-validation-for="NameForPrint" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="NameForPrint" class="control-label"></label>
+                    <input asp-for="NameForPrint" class="form-control" type="text"/>
+                    <span asp-validation-for="NameForPrint" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="EdizmOfProduct" class="control-label"></label>
-                @Html.DropDownList("EdizmOfProduct", ViewBag.EdizmList as SelectList, 
-                                                    new { @class = "form-control" })
-                <span asp-validation-for="EdizmOfProduct" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="EdizmOfProduct" class="control-label"></label>
+                    @Html.DropDownList("EdizmOfProduct", ViewBag.EdizmList as SelectList, 
+                                                        new { @class = "form-control" })
+                    <span asp-validation-for="EdizmOfProduct" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="AmountOfPackages" class="control-label"></label>
-                <input asp-for="AmountOfPackages" class="form-control" type="number"/>
-                <span asp-validation-for="AmountOfPackages" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="AmountOfPackages" class="control-label"></label>
+                    <input asp-for="AmountOfPackages" class="form-control" type="number"/>
+                    <span asp-validation-for="AmountOfPackages" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="EdizmOfPackages" class="control-label"></label>
-                @Html.DropDownList("EdizmOfPackages", ViewBag.EdizmList as SelectList, 
-                                                    new { @class = "form-control" })
-                <span asp-validation-for="EdizmOfPackages" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="EdizmOfPackages" class="control-label"></label>
+                    @Html.DropDownList("EdizmOfPackages", ViewBag.EdizmList as SelectList, 
+                                                        new { @class = "form-control" })
+                    <span asp-validation-for="EdizmOfPackages" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" type="text"/>
-                <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="ProductName" class="control-label"></label>
+                    <input asp-for="ProductName" class="form-control" type="text"/>
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Marking" class="control-label"></label>
-                <input asp-for="Marking" class="form-control" type="text"/>
-                <span asp-validation-for="Marking" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Marking" class="control-label"></label>
+                    <input asp-for="Marking" class="form-control" type="text"/>
+                    <span asp-validation-for="Marking" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Conclusion" class="control-label"></label>
-                @Html.DropDownList("Conclusion", ViewBag.ConclusionList as SelectList, 
-                                                    new { @class = "form-control" })
-                <span asp-validation-for="Conclusion" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Conclusion" class="control-label"></label>
+                    @Html.DropDownList("Conclusion", ViewBag.ConclusionList as SelectList, 
+                                                        new { @class = "form-control" })
+                    <span asp-validation-for="Conclusion" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Additional" class="control-label"></label>
-                <input asp-for="Additional" class="form-control" type="text"/>
-                <span asp-validation-for="Additional" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Additional" class="control-label"></label>
+                    <input asp-for="Additional" class="form-control" type="text"/>
+                    <span asp-validation-for="Additional" class="text-danger"></span>
+                </div>
             </div>
+        </div>    
             <div class="form-group">
                 <input type="submit" value="Сохранить" asp-route-id="@Model.id" class="btn btn-success" />
             </div>
-        </div>
     </div>
 </form>
 <div>
